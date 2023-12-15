@@ -3,9 +3,8 @@ let count = 0;
 const requestCounter = async (req, res, next) => {
   const user = await newAcc.findLord(req.user.dn);
   try {
-    const premium = user.isPremium;
+    const premium = user.isPremium; //if user package is free and the request sent is more than 2 ?
     if (!premium) {
-      //if user package is free and the request sent is more than 2 ?
       if (count == 3) {
         res.status(403).send({
           response: "exceeded daily request limit!",

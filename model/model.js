@@ -3,13 +3,12 @@ const jwt = require("jsonwebtoken");
 const nyben = client.db("alora-sealord").collection("five-fingaz");
 const bcrypt = require("bcrypt");
 
-
 //sign up
 const createAccount = async (dn, password) => {
   const response = "Welcome on board nyben";
   try {
     if (dn || password) return;
-    const user = await nyben.insertOne({ dn, password });
+    const user = await nyben.insertOne({ dn, password, isPremium: false });
     let newLord = await findLord(dn);
     return user.insertedId && { response, newLord };
   } catch (error) {
@@ -22,7 +21,6 @@ const findLord = async (dn) => {
   const lord = await nyben.findOne({ dn: dn });
   return lord ? lord : "not found";
 };
-
 
 //sign in
 const signin = async (username, password) => {
@@ -43,6 +41,5 @@ const signin = async (username, password) => {
   }
 };
 
-
-const newAcc = { createAccount, nyben, signin , findLord};
+const newAcc = { createAccount, nyben, signin, findLord };
 module.exports = { newAcc };

@@ -1,5 +1,4 @@
 const { newAcc } = require("../model/model");
-
 const signIn = async (req, res) => {
   const { dn, pass } = req.body;
   try {
