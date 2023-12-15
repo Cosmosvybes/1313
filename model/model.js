@@ -44,5 +44,5 @@ const signin = async (username, password) => {
 };
 
 
-const newAcc = { createAccount, nyben, signin };
+const newAcc = { createAccount, nyben, signin , findLord};
 module.exports = { newAcc };

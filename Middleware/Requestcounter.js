@@ -1,10 +1,12 @@
+const { newAcc } = require("../model/model");
 let count = 0;
-const requestCounter = (req, res, next) => {
+const requestCounter = async (req, res, next) => {
+  const user = await newAcc.findLord(req.user.dn);
   try {
-    const freemium = true;
-    if (freemium) {
-      if (count >= 2) {
-        //if user package is free ?
+    const premium = user.isPremium;
+    if (!premium) {
+      //if user package is free and the request sent is more than 2 ?
+      if (count == 3) {
         res.status(403).send({
           response: "exceeded daily request limit!",
         });
