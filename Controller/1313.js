@@ -2,6 +2,7 @@ function changeCappings(cappings) {
   let splitCappings = cappings.split("");
   const cappBucket = [];
   splitCappings.map((cap) => {
+    
     let thirteen13 = [
       { key: "a", eqv: "n" },
       { key: "b", eqv: "o" },
@@ -47,7 +48,7 @@ function changeCappings(cappings) {
     if (findLetter) {
       cappBucket.push(findLetter.eqv);
     } else {
-      cappBucket.push(" ");
+      cappBucket.push(cap);
      
     }
   });
